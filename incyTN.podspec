@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = 'incyTN'
-  s.version          = '5.14.1'
+  s.version          = '19.01.26'
   s.summary          = 'Wrapper for hev-socks5-tunnel.'
   s.homepage         = 'https://github.com/JustYay/incyTN'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'JustYay' => 'ustinboris831@gmail.com' }
-  s.source           = { :http => 'https://github.com/JustYay/incyTN/releases/download/26.1.18/CocoapodsSource.zip' }
+  s.source           = { :http => 'https://github.com/JustYay/incyTN/releases/download/19.01.26/CocoapodsSource.zip' }
   s.static_framework = true
 
   s.ios.deployment_target = '12.0'
