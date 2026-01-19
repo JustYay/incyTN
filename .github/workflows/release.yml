@@ -133,15 +133,15 @@ jobs:
 
       - name: Generate Podspec
         run: |
-          cat > Tun2SocksKit.podspec <<'EOF'
+          cat > incyTN.podspec <<'EOF'
           Pod::Spec.new do |s|
-            s.name             = 'Tun2SocksKit'
+            s.name             = 'incyTN'
             s.version          = '${{ github.event.inputs.version }}'
             s.summary          = 'Wrapper for hev-socks5-tunnel.'
-            s.homepage         = 'https://github.com/EbrahimTahernejad/Tun2SocksKit'
+            s.homepage         = 'https://github.com/JustYay/incyTN'
             s.license          = { :type => 'MIT', :file => 'LICENSE' }
-            s.author           = { 'Ebrahim Tahernejad' => 'ebrahimtahernejad@gmail.com' }
-            s.source           = { :http => 'https://github.com/EbrahimTahernejad/Tun2SocksKit/releases/download/${{ github.event.inputs.version }}/CocoapodsSource.zip' }
+            s.author           = { 'JustYay' => 'ustinboris831@gmail.com' }
+            s.source           = { :http => 'https://github.com/JustYay/incyTN/releases/download/${{ github.event.inputs.version }}/CocoapodsSource.zip' }
             s.static_framework = true
 
             s.ios.deployment_target = '12.0'
@@ -155,11 +155,11 @@ jobs:
               hs.vendored_frameworks = 'HevSocks5Tunnel.xcframework'
             end
           
-            # === Subspec: Swift wrapper (Tun2SocksKit)
+            # === Subspec: Swift wrapper (incyTN)
             s.subspec 'Core' do |ss|
               ss.source_files  = 'Sources/Tun2SocksKit/**/*.{swift,h}'
               ss.public_header_files = 'Sources/Tun2SocksKit/Tun2SocksKitC.h'
-              ss.dependency 'Tun2SocksKit/HevSocks5Tunnel'
+              ss.dependency 'incyTN/HevSocks5Tunnel'
               ss.pod_target_xcconfig = {
                 'DEFINES_MODULE' => 'YES'
               }
@@ -173,12 +173,12 @@ jobs:
           
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Tun2SocksKit Release ${{ github.event.inputs.version }}!!!
-          commit_user_name: Ebrahim
-          commit_user_email: ebrahimtahernejad@gmail.com
-          commit_author: Ebrahim <ebrahimtahernejad@gmail.com>
+          commit_message: incyTN Release ${{ github.event.inputs.version }}
+          commit_user_name: JustYay
+          commit_user_email: ustinboris831@gmail.com
+          commit_author: JustYay <ustinboris831@gmail.com>
           tagging_message: ${{ github.event.inputs.version }}
-          file_pattern: 'Package.swift Tun2SocksKit.podspec'
+          file_pattern: 'Package.swift incyTN.podspec'
           
       - name: Upload Release
         uses: softprops/action-gh-release@v1
@@ -191,13 +191,9 @@ jobs:
             ./CocoapodsSource.zip
 
       - name: Validate Podspec
-        run: pod spec lint Tun2SocksKit.podspec --allow-warnings --verbose
+        run: pod spec lint incyTN.podspec --allow-warnings --verbose
 
       - name: Publish to CocoaPods Trunk
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        run: pod trunk push Tun2SocksKit.podspec --allow-warnings
-
-
-
-
+        run: pod trunk push incyTN.podspec --allow-warnings
